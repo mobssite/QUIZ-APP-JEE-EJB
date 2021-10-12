@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ChoixCreateDlg" widgetVar="ChoixCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateChoixTitle}">
+            <h:form id="ChoixCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{choixController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateChoixLabel_choix}" for="choix" />
+                        <p:inputText id="choix" value="#{choixController.selected.choix}" title="#{bundle.CreateChoixTitle_choix}" required="true" requiredMessage="#{bundle.CreateChoixRequiredMessage_choix}"/>
+                        <p:outputLabel value="#{bundle.CreateChoixLabel_isCorrect}" for="isCorrect" />
+                        <p:selectBooleanCheckbox id="isCorrect" value="#{choixController.selected.isCorrect}" required="true" requiredMessage="#{bundle.EditChoixRequiredMessage_isCorrect}"/>
+                        
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{choixController.create}" value="#{bundle.Save}" update="display,:ChoixListForm:datalist,:growl" oncomplete="handleSubmit(args,'ChoixCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ChoixCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AdminCreateDlg" widgetVar="AdminCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateAdminTitle}">
+            <h:form id="AdminCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{adminController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateAdminLabel_idAdmin}" for="idAdmin" />
+                        <p:inputText id="idAdmin" value="#{adminController.selected.idAdmin}" title="#{bundle.CreateAdminTitle_idAdmin}" required="true" requiredMessage="#{bundle.CreateAdminRequiredMessage_idAdmin}"/>
+                        <p:outputLabel value="#{bundle.CreateAdminLabel_nom}" for="nom" />
+                        <p:inputText id="nom" value="#{adminController.selected.nom}" title="#{bundle.CreateAdminTitle_nom}" required="true" requiredMessage="#{bundle.CreateAdminRequiredMessage_nom}"/>
+                        <p:outputLabel value="#{bundle.CreateAdminLabel_prenom}" for="prenom" />
+                        <p:inputText id="prenom" value="#{adminController.selected.prenom}" title="#{bundle.CreateAdminTitle_prenom}" required="true" requiredMessage="#{bundle.CreateAdminRequiredMessage_prenom}"/>
+                        <p:outputLabel value="#{bundle.CreateAdminLabel_email}" for="email" />
+                        <p:inputText id="email" value="#{adminController.selected.email}" title="#{bundle.CreateAdminTitle_email}" required="true" requiredMessage="#{bundle.CreateAdminRequiredMessage_email}"/>
+                        <p:outputLabel value="#{bundle.CreateAdminLabel_mdp}" for="mdp" />
+                        <p:inputText id="mdp" value="#{adminController.selected.mdp}" title="#{bundle.CreateAdminTitle_mdp}" required="true" requiredMessage="#{bundle.CreateAdminRequiredMessage_mdp}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{adminController.create}" value="#{bundle.Save}" update="display,:AdminListForm:datalist,:growl" oncomplete="handleSubmit(args,'AdminCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="AdminCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

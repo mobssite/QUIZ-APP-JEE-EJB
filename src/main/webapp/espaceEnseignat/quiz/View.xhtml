@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="QuizViewDlg" widgetVar="QuizViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewQuizTitle}">
+            <h:form id="QuizViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{quizController.selected != null}">
+                        <h:outputText value="#{bundle.ViewQuizLabel_idQuiz}"/>
+                        <h:outputText value="#{quizController.selected.idQuiz}" title="#{bundle.ViewQuizTitle_idQuiz}"/>
+                        <h:outputText value="#{bundle.ViewQuizLabel_nomQuiz}"/>
+                        <h:outputText value="#{quizController.selected.nomQuiz}" title="#{bundle.ViewQuizTitle_nomQuiz}"/>
+                        <h:outputText value="#{bundle.ViewQuizLabel_dateDebut}"/>
+                        <h:outputText value="#{quizController.selected.dateDebut}" title="#{bundle.ViewQuizTitle_dateDebut}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewQuizLabel_duree}"/>
+                        <h:outputText value="#{quizController.selected.duree}" title="#{bundle.ViewQuizTitle_duree}"/>
+                        <h:outputText value="#{bundle.ViewQuizLabel_idSujet}"/>
+                        <h:outputText value="#{quizController.selected.idSujet}" title="#{bundle.ViewQuizTitle_idSujet}"/>
+                        <h:outputText value="#{bundle.ViewQuizLabel_idAdmin}"/>
+                        <h:outputText value="#{quizController.selected.idAdmin}" title="#{bundle.ViewQuizTitle_idAdmin}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="QuizViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

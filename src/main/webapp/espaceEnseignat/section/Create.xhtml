@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SectionCreateDlg" widgetVar="SectionCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateSectionTitle}">
+            <h:form id="SectionCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{sectionController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateSectionLabel_idSection}" for="idSection" />
+                        <p:inputText id="idSection" value="#{sectionController.selected.idSection}" title="#{bundle.CreateSectionTitle_idSection}" required="true" requiredMessage="#{bundle.CreateSectionRequiredMessage_idSection}"/>
+                        <p:outputLabel value="#{bundle.CreateSectionLabel_libele}" for="libele" />
+                        <p:inputText id="libele" value="#{sectionController.selected.libele}" title="#{bundle.CreateSectionTitle_libele}" required="true" requiredMessage="#{bundle.CreateSectionRequiredMessage_libele}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{sectionController.create}" value="#{bundle.Save}" update="display,:SectionListForm:datalist,:growl" oncomplete="handleSubmit(args,'SectionCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SectionCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
